@@ -11,7 +11,7 @@ public class Boletin19 {
         ArrayList<Cole> lista = new ArrayList<>();
         Scanner obj = new Scanner(System.in);
         int salir = 1;
-        System.out.println("Indique que desea hacer:\n1.Crear lista nueva\n2.Visualizar lista\n3.Ver la n0ta de un determinado alumno\n4.Añadir un alumno\n5.Eliminar un alumno\n6.Consultar la existencia de un alumno\n7.Salir");
+        System.out.println("Indique que desea hacer:\n1.Crear lista nueva\n2.Visualizar lista\n3.Ver la nota de un determinado alumno\n4.Añadir un alumno\n5.Eliminar un alumno\n6.Consultar la existencia de un alumno\n7.Salir");
         int opcion = obj.nextInt();
         while (opcion != 7) {
             if (opcion == 1) {
@@ -30,8 +30,35 @@ public class Boletin19 {
                     Cole i = it.next();
                     System.out.println("nome: " + i.getNombre() + "\t\tnota: " + i.getNota());
                 }
+            } else if (opcion == 3) {
+                System.out.println("Introduce el nombre del alumno");
+                String x = obj.next();
+                for (Iterator<Cole> it = lista.iterator(); it.hasNext();) {
+                    Cole i = it.next();
+                    if (x.equals(i.getNombre())) {
+                        System.out.println("nombre: " + i.getNombre() + "\t\tnota: " + i.getNota());
+                    }
+                }
+            } else if (opcion == 4) {
+                System.out.println("Introduce el nombre del alumno");
+                String x = obj.next();
+                System.out.println("Introduce la nota del alumno " + x);
+                int y = obj.nextInt();
+                Cole crear = new Cole(x, y);
+                lista.add(crear);
+            } else if (opcion == 5) {
+                System.out.println("Introduce el nombre del alumno");
+                String x = obj.next();
+                for (Iterator<Cole> it = lista.iterator(); it.hasNext();) {
+                    Cole i = it.next();
+                    if (x.equals(i.getNombre())) {
+                        Cole borrar = new Cole (x, i.getNota());
+                        lista.remove(borrar);
+                    }
+                }
             }
-
+        System.out.println("Indique que desea hacer:\n1.Crear lista nueva\n2.Visualizar lista\n3.Ver la nota de un determinado alumno\n4.Añadir un alumno\n5.Eliminar un alumno\n6.Consultar la existencia de un alumno\n7.Salir");
+        opcion = obj.nextInt();
         }
     }
 }
